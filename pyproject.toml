@@ -1,0 +1,29 @@
+[project]
+name = "com-areal-imagery"
+version = "0.1.0"
+description = "A Python project with specified dependencies"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "torch",
+    "torchvision",
+    "torchaudio",
+    "jupyter",
+    "nest_asyncio",
+    "python-dotenv",
+    "langchain==0.3.10",
+    "langchain-ollama",
+    "matplotlib",
+    "jupyterlab_execute_time",
+    "python-dateutil",
+    "ultralytics",
+    "seaborn",
+    "pandas",
+    "opencv-python-headless==4.8.1.78",
+    "squarify",
+]
+
+[tool.poetry.source]
+name = "pytorch"
+url = "https://download.pytorch.org/whl/cu118"
+priority = "explicit"
