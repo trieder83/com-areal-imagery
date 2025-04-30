@@ -23,6 +23,8 @@ print(f"The image has dimensions {width}x{height} and {channels} channels.")
 
 # load trained model
 model = YOLO('runs/detect/train12/weights/best.pt')
+# yolo11n.pt  yolo11x.pt  yolov8n.pt  yolov8x.pt
+#model = YOLO('model/yolov8n.pt') # noboard, nothing, airplain
 
 # Run inference with 
 results = model(image_path)

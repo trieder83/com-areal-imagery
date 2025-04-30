@@ -61,8 +61,9 @@ COPY pyproject.toml /app/
 COPY src/ /app/
 COPY notebooks/ /app/notebooks/
 
-RUN uv sync --locked
+#RUN uv sync --locked
+RUN uv sync 
 
 EXPOSE 8888
 #CMD [ "jupyter", "notebook","--ip=0.0.0.0", "--no-browser", "--allow-root", "--NotebookApp.default_url=/app/notebooks/default.ipynb"]
-CMD [ "uv","run","jupyter", "notebook","--ip=0.0.0.0", "--no-browser", "--allow-root", "--NotebookApp.default_url=/app/notebooks/default.ipynb"]
+CMD [ "uv","run","--with jupyter", "jupyter", "notebook","--ip=0.0.0.0", "--no-browser", "--allow-root", "--NotebookApp.default_url=/app/notebooks/default.ipynb"]
