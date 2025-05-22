@@ -12,19 +12,10 @@ import seaborn as sns
 
 sns.set_style('darkgrid')
 
+#model = YOLO('model/yolov8x.pt')
 model = YOLO('model/yolov8n.pt')
 
-
-# Load an image using OpenCV
-image = cv2.imread("data/ship/train/images/06573fb73_jpg.rf.1cac92cdc84d92789ac1304b719bbcbf.jpg")
-print("image read")
-
-# Get the size of the image
-height, width, channels = image.shape
-print(f"The image has dimensions {width}x{height} and {channels} channels.")
-
-
-model = YOLO('model/yolov8x.pt')
+height = 640
 
 # Training the model
 #model.train(data = '/kaggle/input/ships-in-aerial-images/ships-aerial-images/data.yaml',

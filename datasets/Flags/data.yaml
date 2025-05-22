@@ -2,5 +2,12 @@ train: ../train/images
 val: ../valid/images
 test: ../test/images
 
-nc: 3
-: ['Canada', 'China', 'Germany']
+nc: 100
+names: ['Afghanistan', 'Algeria', 'America', 'Antigua-Barbuda', 'Arab', 'Argentine', 'Australia', 'Austria', 'Bahrain', 'Bangladesh', 'Belgium', 'Belize', 'Bhutan', 'Bosnia-Herzegovina', 'Brazil', 'Cambodia', 'Cameroon', 'Canada', 'China', 'Colombia', 'Costa-Rica', 'Croatia', 'Cuba', 'Czech', 'Denmark', 'Dominica', 'Dominican-republic', 'Ecuador', 'Egypt', 'Ethiopia', 'Finland', 'France', 'Georgia', 'Germany', 'Ghana', 'Greece', 'Haiti', 'India', 'Indonesia', 'Iraq', 'Ireland', 'Israel', 'Italy', 'Jamaica', 'Japan', 'Kazakhstan', 'Kenya', 'Kiribati', 'Kosovo', 'Lebanon', 'Lesotho', 'Liechtenstein', 'Madagascar', 'Malaysia', 'Mexico', 'Mongol', 'Montenegro', 'Mozambique', 'Nepal', 'New-Zealand', 'Nigeria', 'Niue', 'North-Korea', 'Norway', 'Palau', 'Panama', 'Papua-New-Guinea', 'Paraguay', 'Peru', 'Philippines', 'Poland', 'Portugal', 'Qatar', 'Russia', 'Saint-Lucia', 'Saudi-Arabia', 'Serbia', 'Singapore', 'Slovakia', 'Slovenia', 'South-Africa', 'South-Korea', 'Spain', 'Sri-Lanka', 'Sweden', 'Switzerland', 'Thailand', 'Tunisia', 'Turkey', 'Turkmenistan', 'Uganda', 'Ukraine', 'Uruguay', 'Vanuatu', 'Vatican', 'Zambia', 'Zimbabwe', 'equatorial-guinea', 'the-Netherlands', 'the-UK']
+
+roboflow:
+  workspace: flags-c8eko
+  project: national-flag-fuji-2-uwc0p
+  version: 1
+  license: BY-NC-SA 4.0
+  url: https://universe.roboflow.com/flags-c8eko/national-flag-fuji-2-uwc0p/dataset/1

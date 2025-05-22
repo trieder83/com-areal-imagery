@@ -33,3 +33,6 @@
 do nor mount windows filesystems directly - it's may fail with chmod errors
  podman run -it -p 8080:8080 -v labelstudio_flags:/label-studio/data  heartexlabs/label-studio:latest
 
+
+# build train image
+ docker build  -f Dockerfile.train.flags . -t flags_train
