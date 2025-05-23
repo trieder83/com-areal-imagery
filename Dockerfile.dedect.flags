@@ -1,5 +1,5 @@
 # Use CUDA 12.4 enabled base image
-FROM nvidia/cuda:12.4-runtime-ubuntu22.04
+FROM nvidia/cuda:12.4.0-runtime-ubuntu22.04
 
 # Install Python 3.11 and curl
 RUN apt-get update && apt-get install -y \
@@ -40,10 +40,10 @@ RUN uv add --index pytorch-cu124 torch==2.4.0+cu124 torchvision==0.19.0+cu124
 RUN uv sync
 
 # Copy application code
-COPY app.py .
+COPY test_flag_dedect.py .
 
 # Copy YOLO model (make sure this file exists in your project directory)
-COPY yolov8n.pt .
+COPY flags.pt .
 
 # Create non-root user for security
 RUN useradd -m -u 1000 appuser && chown -R appuser:appuser /app
@@ -55,12 +55,11 @@ USER appuser
 EXPOSE 5000
 
 # Set environment variables
-ENV FLASK_APP=app.py
-ENV FLASK_ENV=production
+ENV MODEL_PATH=flags.pt
 
 # Health check
 HEALTHCHECK --interval=30s --timeout=30s --start-period=60s --retries=3 \
     CMD curl -f http://localhost:5000/health || exit 1
 
 # Run the application with uv
-CMD ["uv", "run", "app.py"]
+CMD ["uv", "run", "test_flag_dedect.py"]

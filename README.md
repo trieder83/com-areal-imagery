@@ -28,11 +28,29 @@
   ]
   finished
 
+# get image 
+podman pull heartexlabs/label-studio:20250522.103436-ls-release-1-19-0-3d6e6771c
 
 # run label studio
 do nor mount windows filesystems directly - it's may fail with chmod errors
  podman run -it -p 8080:8080 -v labelstudio_flags:/label-studio/data  heartexlabs/label-studio:latest
 
-
 # build train image
- docker build  -f Dockerfile.train.flags . -t flags_train
+ podman build  -f Dockerfile.train.flags . -t flags_train:dev0.1
+
+# run train image
+ podman run -v ./dataset/XX/XX:/dataset/  flags_train:dev0.1
+
+# query
+ uv run test_flag_query.py 
+
+ for FILE in  datasets/Terrorflags/images_raw/*jpg ; do curl -X POST -F "image=@$FILE" http://localhost:5000/predict; done 
+
+# build query
+ podman build -f Dockerfile.dedect.flags . -t flags-dedect-cuda124:dev0.1
+
+
+# cuda test
+$ uv run gputest.py
+CUDA Available: True
+Device: NVIDIA GeForce RTX 3050 Laptop GPU
