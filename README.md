@@ -30,6 +30,7 @@
 
 # get image 
 podman pull heartexlabs/label-studio:20250522.103436-ls-release-1-19-0-3d6e6771c
+label-studio start --username <username> --password <password> [--user-token <token-at-least-5-chars>]
 
 # run label studio
 do nor mount windows filesystems directly - it's may fail with chmod errors

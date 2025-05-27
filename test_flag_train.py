@@ -21,8 +21,9 @@ sns.set_style('darkgrid')
 model = YOLO('model/yolov8m.pt')
 
 height = 640
-DATASET_RAW = "datasets/Terrorflags/project-2-at-2025-05-23-12-44-f448e586"
-DATASET = "datasets/Terrorflags"
+DATASET_RAW = os.getenv("DATASET_RAW","datasets/Terrorflags/project-2-at-2025-05-23-12-44-f448e586")
+DATASET = os.getenv("DATASET","datasets/Terrorflags")
+EPOCH = int(os.getenv("EPOCH","40"))
 
 # split training data
 def splitdata(datasetpath, splitdataset):
@@ -34,7 +35,7 @@ if not os.path.exists(os.path.join(os.path.abspath(DATASET),"train")):
 
 # Training the model
 model.train(data = os.path.abspath(os.path.join(os.path.abspath(DATASET),"data.yaml")),
-            epochs = 40,
+            epochs = EPOCH,
             imgsz = height,
             seed = 42,
             batch = 8,

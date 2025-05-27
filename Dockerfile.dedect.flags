@@ -10,8 +10,9 @@ RUN apt-get update && apt-get install -y \
     && ln -s /usr/bin/python3.11 /usr/bin/python
 
 # Install uv
-RUN curl -LsSf https://astral.sh/uv/install.sh | sh
-ENV PATH="/root/.cargo/bin:$PATH"
+#RUN curl -LsSf https://astral.sh/uv/install.sh |  env UV_INSTALL_DIR="/usr/local/uv" | sh
+#ENV PATH="/root/.cargo/bin:/usr/local/uv/bin:$PATH"
+COPY --from=ghcr.io/astral-sh/uv:latest /uv /uvx /bin/
 
 # Set working directory
 WORKDIR /app
