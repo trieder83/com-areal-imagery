@@ -6,12 +6,12 @@ import base64
 from PIL import Image
 import io
 import os
-import torch
+#import torch
 
 app = Flask(__name__)
 
-print("CUDA Available:", torch.cuda.is_available())
-print("GPU Name:", torch.cuda.get_device_name(0) if torch.cuda.is_available() else "No GPU")
+#print("CUDA Available:", torch.cuda.is_available())
+#print("GPU Name:", torch.cuda.get_device_name(0) if torch.cuda.is_available() else "No GPU")
 
 # Load YOLO model (assumes model file exists in the same directory)
 # You can change this to your specific model path

@@ -10,10 +10,10 @@ import pandas as pd
 import matplotlib.image as mpimg
 import seaborn as sns
 import splitfolders
-import torch
+#import torch
 
-print("CUDA Available:", torch.cuda.is_available())
-print("GPU Name:", torch.cuda.get_device_name(0) if torch.cuda.is_available() else "No GPU")
+#print("CUDA Available:", torch.cuda.is_available())
+#print("GPU Name:", torch.cuda.get_device_name(0) if torch.cuda.is_available() else "No GPU")
 
 sns.set_style('darkgrid')
 

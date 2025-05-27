@@ -5,9 +5,9 @@ description = "A Python project with specified dependencies"
 readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
-	"torch>=2.6.0",
-	"torchvision>=0.20.0",
-    "torchaudio",
+#	"torch>=2.6.0",
+#	"torchvision>=0.20.0",
+#    "torchaudio",
     "jupyter",
     "nest_asyncio",
     "python-dotenv",
@@ -27,15 +27,15 @@ dependencies = [
     "flask>=3.1.1",
 ]
 
-[tool.uv.sources]
-torch = [
-  { index = "pytorch-cu124", marker = "sys_platform == 'linux'"  },
-]
-torchvision = [
-  { index = "pytorch-cu124", marker = "sys_platform == 'linux'" },
-]
+#[tool.uv.sources]
+#torch = [
+#  { index = "pytorch-cu124", marker = "sys_platform == 'linux'"  },
+#]
+#torchvision = [
+#  { index = "pytorch-cu124", marker = "sys_platform == 'linux'" },
+#]
 
-[[tool.uv.index]]
-name = "pytorch-cu124"
-url = "https://download.pytorch.org/whl/cu124"
-explicit = true
+#[[tool.uv.index]]
+#name = "pytorch-cu124"
+#url = "https://download.pytorch.org/whl/cu124"
+#explicit = true
