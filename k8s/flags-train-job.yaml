@@ -1,0 +1,40 @@
+piVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: flag-train-pvc
+  namespace: default
+spec:
+  storageClassName: "default" 
+  volumeName: flag-train
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: flags-train
+  namespace: default
+spec:
+  template:
+    spec:
+      containers:
+      - name: pi
+        image: trieder83/yolo-train:dev0.1
+        #command: ["perl",  "-Mbignum=bpi", "-wle", "print bpi(2000)"]
+        env:
+        - name: MODEL_PATH
+          value: "flags.pt"
+        resources:
+          requests:
+            memory: "2Gi"
+            cpu: "1000m"
+            nvidia.com/gpu: 1
+          limits:
+            memory: "4Gi"
+            cpu: "2000m"
+            nvidia.com/gpu: 1
+        volumeMounts:
+        - name: flags-train
+          mountPath: /app/runs
+      restartPolicy: Never
+    volumes:
+   - name: xyz
+  backoffLimit: 4
