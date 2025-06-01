@@ -16,7 +16,7 @@ app = Flask(__name__)
 # Load YOLO model (assumes model file exists in the same directory)
 # You can change this to your specific model path
 #model = YOLO('model/yolov8x.pt')
-MODEL_PATH = os.getenv(YOLO_MODEL, "runs/detect/train27/weights/best.pt")
+MODEL_PATH = os.getenv("YOLO_MODEL", "runs/detect/train27/weights/best.pt")
 MODEL = os.path.abspath(MODEL_PATH)
 
 model = YOLO(MODEL)  # or 'yolov8s.pt', 'yolov8m.pt', etc.

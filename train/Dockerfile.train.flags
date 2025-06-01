@@ -5,13 +5,16 @@
 #COPY --from=ghcr.io/astral-sh/uv:latest /uv /uvx /bin/
 FROM ultralytics/ultralytics:8.3.145-python
 
+#RUN uv pip install --system --index-url https://download.pytorch.org/whl/cpu torch torchvision ultralytics --index-strategy unsafe-best-match 
+RUN uv pip install --system torch torchvision ultralytics --index-strategy unsafe-best-match 
 # Copy the project into the image
-ADD test_flag_train.py pyproject.toml /app/
+ADD pyproject.toml /app/
 
 # Sync the project into a new environment, asserting the lockfile is up to date
 WORKDIR /app
 RUN uv sync 
 #RUN uv sync --locked
+ADD test_flag_train.py /app/
 
 # Presuming there is a `my_app` command provided by the project
 CMD ["uv", "run", "test_flag_train.py"]

@@ -49,6 +49,7 @@ do nor mount windows filesystems directly - it's may fail with chmod errors
 
 # build query
  podman build -f Dockerfile.dedect.flags . -t flags-dedect-cuda124:dev0.1
+ podman run  -e YOLO_MODEL="/app/flags.pt" trieder83/yolo-dedect:dev0.1cpu
 
 
 # cuda test

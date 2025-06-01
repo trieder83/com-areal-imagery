@@ -1,0 +1,47 @@
+#FROM python:3.11.10-slim-bookworm
+FROM ultralytics/ultralytics:8.3.146-cpu
+
+# Set working directory
+WORKDIR /app
+
+# Copy project files first to leverage Docker cache
+COPY pyproject.toml /app/
+
+# Copy contents and configure git
+#COPY . .
+#RUN sed -i '/^\[http "https:\/\/github\.com\/"\]/,+1d' .git/config
+#ADD https://github.com/ultralytics/assets/releases/download/v8.3.0/yolo11n.pt .
+
+# Install pip packages
+#RUN pip install uv
+#RUN uv pip install --system -e ".[export]" --extra-index-url https://download.pytorch.org/whl/cpu --index-strategy unsafe-best-match
+#RUN uv pip install --system -e ".[export]" --extra-index-url https://download.pytorch.org/whl/cpu --index-strategy unsafe-best-match
+RUN uv pip install --system --index-url https://download.pytorch.org/whl/cpu torch torchvision ultralytics --index-strategy unsafe-best-match 
+# Need lower version of 'numpy' for Sony IMX export
+#RUN uv pip install --system numpy==1.26.4
+
+
+# Install all dependencies
+RUN uv sync 
+
+# Copy YOLO model (make sure this file exists in your project directory)
+COPY test_flag_dedect.py /app/
+COPY flags.pt /app/
+
+# Create non-root user for security
+#RUN useradd -m -u 1000 appuser && chown -R appuser:appuser /app
+# Copy uv to user path
+#USER appuser
+
+# Expose port
+EXPOSE 5000
+
+# Set environment variables
+ENV MODEL_PATH=flags.pt
+
+# Health check
+HEALTHCHECK --interval=30s --timeout=30s --start-period=60s --retries=3 \
+    CMD curl -f http://localhost:5000/health || exit 1
+
+# Run the application with uv
+CMD ["uv", "run", "test_flag_dedect.py"]

@@ -1,0 +1,35 @@
+[project]
+name = "dedect-flags"
+version = "0.1.0"
+description = "A Python project with specified dependencies"
+readme = "README.md"
+requires-python = "==3.11.10" #">=3.10"
+dependencies = [
+    "ultralytics>=8.3.0",
+    "matplotlib>=3.3.0",
+    "opencv-python>=4.6.0",
+    "pillow>=7.1.2",
+    "pyyaml>=5.3.1",
+    "requests>=2.23.0",
+    "scipy>=1.4.1",
+	"torch>=2.7.0",
+	"torchaudio==2.7.0",
+    #"torch==1.8.0+cpu",
+    #"torchvision==0.9.0+cpu",
+    "tqdm>=4.64.0", # progress bars
+    "psutil", # system utilization
+    #"py-cpuinfo", # display CPU info
+    "pandas>=1.1.4",
+    "split-folders>=0.5.1",
+    "flask>=3.1.1"
+]
+
+[tool.uv.sources]
+torch = { index = "pytorch-cpu" }
+torchvision = { index = "pytorch-cpu" }
+torchaudio = { index = "pytorch-cpu" }
+
+[[tool.uv.index]]
+name = "pytorch-cpu"
+url = "https://download.pytorch.org/whl/cpu"
+explicit = true
