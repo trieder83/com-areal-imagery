@@ -51,8 +51,21 @@ do nor mount windows filesystems directly - it's may fail with chmod errors
  podman build -f Dockerfile.dedect.flags . -t flags-dedect-cuda124:dev0.1
  podman run  -e YOLO_MODEL="/app/flags.pt" trieder83/yolo-dedect:dev0.1cpu
 
+# copy dataset
+ k cp  Flags/ flags-train-cddbj:/datasets/Flags/
+
 
 # cuda test
 $ uv run gputest.py
 CUDA Available: True
 Device: NVIDIA GeForce RTX 3050 Laptop GPU
+
+
+echo <<EOF> data.yaml
+train: ./train/images
+val: ./val/images
+test: ./test/images
+
+nc: 10
+names: ['Canada', 'China', 'Germany', 'India', 'Japan', 'Pakistan', 'Russia', 'South-Korea', 'United-Kingdom', 'United-States']
+EOF

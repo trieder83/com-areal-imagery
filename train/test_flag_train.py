@@ -17,7 +17,7 @@ import splitfolders
 
 sns.set_style('darkgrid')
 
-BASE_MODEL= int(os.getenv("BASE_MODEL","model/yolov8m.pt"))
+BASE_MODEL= os.getenv("BASE_MODEL","model/yolov8m.pt")
 #model = YOLO('model/yolov8x.pt')
 model = YOLO(BASE_MODEL)
 

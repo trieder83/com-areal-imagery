@@ -14,6 +14,19 @@ spec:
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
+  name: model-pvc
+  namespace: default
+spec:
+  storageClassName: ssd-hostpath
+  accessModes:
+  - ReadWriteOnce
+  resources:
+    requests:
+      storage: 500Mi
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
   name: datasets-pvc
   namespace: default
 spec:
@@ -38,8 +51,14 @@ spec:
         #command: ["perl",  "-Mbignum=bpi", "-wle", "print bpi(2000)"]
         command: ["sleep", "900"]
         env:
-        - name: MODEL_PATH
-          value: "flags.pt"
+        - name: DATASET_RAW
+          value: "/datasets/Flags"
+        - name: DATASET
+          value: "/datasets/Flags-train"
+        - name: EPOCH
+          value: "10"
+        - name: BASE_MODEL
+          value: "/model/yolov8m.pt"
         resources:
           requests:
             memory: "2Gi"
@@ -54,6 +73,8 @@ spec:
           mountPath: /app/runs
         - name: datasets
           mountPath: /datasets
+        - name: model
+          mountPath: /model
       restartPolicy: Never
       volumes:
       - name: flags-train
@@ -62,4 +83,7 @@ spec:
       - name: datasets
         persistentVolumeClaim:
           claimName: datasets-pvc
+      - name: model
+        persistentVolumeClaim:
+          claimName: model-pvc
   backoffLimit: 4
